@@ -1,23 +1,19 @@
 import * as React from 'react'
-import { Global, css } from '@emotion/core'
-import styled from '@emotion/styled'
-import normalize from '../styles/normalize'
+import { Global } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
 
-const StyledLayoutRoot = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`
+import global from '../styles/global'
+import theme from '../styles/theme'
 
 interface LayoutRootProps {
   className?: string
 }
 
 const LayoutRoot: React.FC<LayoutRootProps> = ({ children, className }) => (
-  <>
-    <Global styles={() => css(normalize)} />
-    <StyledLayoutRoot className={className}>{children}</StyledLayoutRoot>
-  </>
+  <ThemeProvider theme={theme}>
+    <Global styles={global} />
+    {children}
+  </ThemeProvider>
 )
 
 export default LayoutRoot
